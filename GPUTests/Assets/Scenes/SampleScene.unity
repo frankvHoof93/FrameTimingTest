@@ -447,7 +447,7 @@ MonoBehaviour:
   text1: {fileID: 708738634}
   text2: {fileID: 1244670040}
   updateTimer: 5
-  targetMS: 14.5
+  targetMS: 13.5
 --- !u!114 &708738634
 MonoBehaviour:
   m_ObjectHideFlags: 0

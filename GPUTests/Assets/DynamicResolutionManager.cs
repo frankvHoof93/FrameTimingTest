@@ -232,8 +232,7 @@ public class DynamicResolutionManager : MonoBehaviour
             currTimer = updateTimer;
             if (msQueue.Count.Equals(0))
                 return; // No timings
-            //float timing = msQueue.Average();
-            float timing = 14.6f;
+            float timing = msQueue.Average();
             if (timing <= 0 || float.IsNaN(timing))
                 return; // Invalid Timing
             if (timing <= (targetMS - 1f) && scale < MAX_SCALE)
@@ -241,9 +240,7 @@ public class DynamicResolutionManager : MonoBehaviour
             else if (timing >= (targetMS + 1f) && scale > MIN_SCALE)
                 ChangeResolution(ScalingDirection.Decrease);
             Debug.Log("Average: " + timing + "   number of samples: " + msQueue.Count + "  New Scale: " + logScale);
-            text1.text = logScale.ToString();
         }
-        text2.text = msQueue.Average().ToString(); 
     }
 #endregion
 
@@ -271,9 +268,11 @@ public class DynamicResolutionManager : MonoBehaviour
     private void ChangeResolution(ScalingDirection dir)
     {
         float curr = scale;
-        curr += (dir == ScalingDirection.Increase ? SCALE_STEP : -SCALE_STEP);
+        if (dir == ScalingDirection.Increase)
+            curr += SCALE_STEP;
+        else
+            curr -= SCALE_STEP;
         curr = Mathf.Clamp(curr, MIN_SCALE, MAX_SCALE);
-        // Final scale for rendering = RenderViewPortScale * EyeTextureResolutionScale
         scale = curr;
     }
 #endregion
