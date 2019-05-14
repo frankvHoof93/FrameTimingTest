@@ -27,7 +27,15 @@ using System;
 /// TODO: have plugin work with GLES2
 /// TODO: support more platforms (iOS, Vulkan, desktop, etc.)
 public class RenderTiming : MonoBehaviour {
-  public static RenderTiming instance;
+
+
+#if !UNITY_ANDROID
+    void Awake()
+    {
+        Destroy(this); // Not Supported
+    }
+#else
+    public static RenderTiming instance { get; private set; }
 
   /// True if rendering timing supported in this platform
   /// TODO: test whether GL extention is available
@@ -43,7 +51,7 @@ public class RenderTiming : MonoBehaviour {
   /// True to periodically log timing to debug console.  Honored only at init.
   public bool logTiming = true;
 
-  #if UNITY_ANDROID && !UNITY_EDITOR
+#if !UNITY_EDITOR
   [DllImport ("RenderTimingPlugin")]
   private static extern void SetDebugFunction(IntPtr ftp);
   [DllImport ("RenderTimingPlugin")]
@@ -52,16 +60,16 @@ public class RenderTiming : MonoBehaviour {
   private static extern IntPtr GetEndTimingFunc();
   [DllImport ("RenderTimingPlugin")]
   private static extern float GetTiming();
-  #else
+#else
   private void SetDebugFunction(IntPtr ftp) {}
   private IntPtr GetStartTimingFunc() { return IntPtr.Zero; }
   private IntPtr GetEndTimingFunc() { return IntPtr.Zero; }
   private float GetTiming() { return float.NaN; }
-  #endif
+#endif
 
   [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
   private delegate void MyDelegate(string str);
-  private bool isInitialized;
+  public bool isInitialized { get; private set; }
   private CommandBuffer commandBufferStart;
   private CommandBuffer commandBufferEnd;
   private Coroutine loggingCoroutine;
@@ -101,7 +109,7 @@ public class RenderTiming : MonoBehaviour {
   }
 
   IEnumerator FrameEnd() {
-    while (true) {
+    while (enabled) {
       yield return new WaitForEndOfFrame();
       if (enabled) {
         GL.IssuePluginEvent(GetEndTimingFunc(), 0 /*unused*/);
@@ -145,4 +153,5 @@ public class RenderTiming : MonoBehaviour {
       Debug.LogFormat("Render time: {0:F3} ms", deltaTime * 1000);
     }
   }
+#endif
 }

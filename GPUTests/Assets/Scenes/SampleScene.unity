@@ -429,7 +429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -504, y: -350}
+  m_AnchoredPosition: {x: -504, y: -221.94}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &708738633
@@ -444,6 +444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd1836969607664e8b5b469bf5e47af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text1: {fileID: 708738634}
+  text2: {fileID: 1244670040}
+  updateTimer: 5
+  targetMS: 14.5
 --- !u!114 &708738634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,7 +481,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 88
 --- !u!222 &708738635
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -645,16 +649,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b96b03d2a2886b04ba7f6d0b5e836bdd, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d8984b69b5ef43daa2764d92ec4ab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  defaultScreenSize: {x: 0, y: 0}
-  toDestroy: {fileID: 0}
-  m1: {fileID: 0}
-  m2: {fileID: 0}
-  m2Enabled: 0
-  currRes: 0
+  logTiming: 0
 --- !u!1 &1022784581
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +735,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1935994488}
+      - m_Target: {fileID: 0}
         m_MethodName: Dest
         m_Mode: 1
         m_Arguments:
@@ -818,6 +816,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 708738632}
+  - {fileID: 1244670039}
   m_Father: {fileID: 1888708520025740162}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -886,6 +885,85 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1244670038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1244670039}
+  - component: {fileID: 1244670041}
+  - component: {fileID: 1244670040}
+  m_Layer: 0
+  m_Name: Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1244670039
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244670038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -322}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1218969630}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -504, y: -529.9}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1244670040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244670038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 135
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 88
+--- !u!222 &1244670041
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244670038}
+  m_CullTransparentMesh: 0
 --- !u!1 &1328373762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,7 +1125,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1935994488}
+      - m_Target: {fileID: 0}
         m_MethodName: Dupe
         m_Mode: 1
         m_Arguments:
@@ -1334,7 +1412,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1935994488}
+      - m_Target: {fileID: 0}
         m_MethodName: SetMesh
         m_Mode: 1
         m_Arguments:
@@ -1633,7 +1711,6 @@ GameObject:
   - component: {fileID: 1935994491}
   - component: {fileID: 1935994490}
   - component: {fileID: 1935994489}
-  - component: {fileID: 1935994488}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1661,25 +1738,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 158}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &1935994488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935994486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b96b03d2a2886b04ba7f6d0b5e836bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 1687370669}
-  defaultScreenSize: {x: 0, y: 0}
-  toDestroy: {fileID: 3201306979397378449}
-  m1: {fileID: 6461297695846733525, guid: 33a969d032f79ba438447768f6817a40, type: 3}
-  m2: {fileID: -5008381810204397873, guid: ef62cb2e030e5db40a2d6afabcef163b, type: 3}
-  m2Enabled: 0
-  currRes: 0
 --- !u!114 &1935994489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1723,7 +1781,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1935994488}
+      - m_Target: {fileID: 0}
         m_MethodName: Set
         m_Mode: 1
         m_Arguments:
